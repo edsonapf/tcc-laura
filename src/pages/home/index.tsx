@@ -1,3 +1,5 @@
+import Link from "@/components/link";
+
 export default function Home() {
   return (
     <>
@@ -20,12 +22,7 @@ export default function Home() {
         mollit anim id est laborum
       </p>
       <div className="w-full flex items-center justify-center">
-        <a
-          href="/form"
-          className="bg-slate-200 text-slate-800 py-2 px-4 rounded-full hover:bg-slate-400 hover:text-slate-100"
-        >
-          Preencher formulário
-        </a>
+        <Link href="/form">Preencher formulário</Link>
       </div>
     </>
   );
