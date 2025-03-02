@@ -1,4 +1,4 @@
-export interface Trial {
+export type Trial = {
   plugin_version: string;
   response: string;
   rt: number;
@@ -6,7 +6,7 @@ export interface Trial {
   time_elapsed: number;
   trial_index: number;
   trial_type: string;
-}
+};
 
 export interface OnFinish {
   trials: Trial[];
