@@ -45,6 +45,11 @@ const experiments = [
     ],
     fake: false,
     phrase: "Luiz trabalha na cidade onde vivem seus avós",
+    question: "pergunta?",
+    answers: [
+      { answer: "sim", isCorrect: true },
+      { answer: "não", isCorrect: false },
+    ],
   },
   {
     stimulus: [
@@ -81,6 +86,11 @@ const experiments = [
     ],
     fake: false,
     phrase: "Carol fez sua festa onde moram seus pais",
+    question: "pergunta?",
+    answers: [
+      { answer: "sim", isCorrect: true },
+      { answer: "não", isCorrect: false },
+    ],
   },
   {
     stimulus: [
@@ -117,6 +127,11 @@ const experiments = [
     ],
     fake: false,
     phrase: "Pedro fez sua tarefa onde pediu ajuda a Mika",
+    question: "pergunta?",
+    answers: [
+      { answer: "sim", isCorrect: true },
+      { answer: "não", isCorrect: false },
+    ],
   },
   {
     stimulus: [
@@ -144,6 +159,11 @@ const experiments = [
     ],
     fake: true,
     phrase: "Minha mãe é muito bonita",
+    question: "pergunta?",
+    answers: [
+      { answer: "sim", isCorrect: true },
+      { answer: "não", isCorrect: false },
+    ],
   },
   {
     stimulus: [
@@ -176,6 +196,11 @@ const experiments = [
     ],
     fake: true,
     phrase: "Minha colega de sala é muito inteligente",
+    question: "pergunta?",
+    answers: [
+      { answer: "sim", isCorrect: true },
+      { answer: "não", isCorrect: false },
+    ],
   },
   {
     stimulus: [
@@ -212,6 +237,11 @@ const experiments = [
     ],
     fake: false,
     phrase: "Camila saiu de Cuba onde viveu sete anos de vida",
+    question: "pergunta?",
+    answers: [
+      { answer: "sim", isCorrect: true },
+      { answer: "não", isCorrect: false },
+    ],
   },
   {
     stimulus: [
@@ -234,6 +264,11 @@ const experiments = [
     ],
     fake: true,
     phrase: "O professor de Sintaxe é legal",
+    question: "pergunta?",
+    answers: [
+      { answer: "sim", isCorrect: true },
+      { answer: "não", isCorrect: false },
+    ],
   },
   {
     stimulus: [
@@ -270,6 +305,11 @@ const experiments = [
     ],
     fake: false,
     phrase: "Ele foi para casa onde mora com sua família",
+    question: "pergunta?",
+    answers: [
+      { answer: "sim", isCorrect: true },
+      { answer: "não", isCorrect: false },
+    ],
   },
   {
     stimulus: [
@@ -306,6 +346,11 @@ const experiments = [
     ],
     fake: false,
     phrase: "Maria teve uma infância onde foi muito feliz",
+    question: "pergunta?",
+    answers: [
+      { answer: "sim", isCorrect: true },
+      { answer: "não", isCorrect: false },
+    ],
   },
   {
     stimulus: [
@@ -337,6 +382,11 @@ const experiments = [
     ],
     fake: true,
     phrase: "Fui ao cinema ontem com meu namorado",
+    question: "pergunta?",
+    answers: [
+      { answer: "sim", isCorrect: true },
+      { answer: "não", isCorrect: false },
+    ],
   },
   {
     stimulus: [
@@ -363,6 +413,11 @@ const experiments = [
     ],
     fake: true,
     phrase: "Eu adoro música pop",
+    question: "pergunta?",
+    answers: [
+      { answer: "sim", isCorrect: true },
+      { answer: "não", isCorrect: false },
+    ],
   },
 ];
 export default function Experiment() {
@@ -370,7 +425,10 @@ export default function Experiment() {
   const navigate = useNavigate();
   const [experimentIndex, setExperimentIndex] = useState(0);
   const [trialData, setTrialData] = useState<TrialRequest[]>([]);
-  const [showButton, setShowButton] = useState(false);
+  const [question, setQuestion] = useState({
+    show: false,
+    start: -1,
+  });
   const [currentPhrasePosition, setCurrentPhrasePosition] = useState(1);
 
   const formatTrialRequest = (
@@ -382,6 +440,7 @@ export default function Experiment() {
       trial_index: trial.trial_index + 1,
       phrase: experiments[experimentIndex].phrase,
       phrasePosition,
+      questionResponseTime: -1,
     }));
   };
 
@@ -427,7 +486,10 @@ export default function Experiment() {
         setTrialData((prev) => {
           return [...prev, ...trialRequest];
         });
-        setShowButton(true);
+        setQuestion({
+          show: true,
+          start: Date.now(),
+        });
       },
     });
 
@@ -437,16 +499,35 @@ export default function Experiment() {
   }, [experimentIndex]);
 
   const handleClick = () => {
+    setTrialData((prev) => {
+      const last: TrialRequest = {
+        ...prev[prev.length - 1],
+        questionResponseTime: Date.now() - question.start,
+      };
+      prev[prev.length - 1] = last;
+      return prev;
+    });
     setCurrentPhrasePosition((prev) =>
       experiments[experimentIndex].fake ? prev : prev + 1
     );
     setExperimentIndex((prev) => prev + 1);
-    setShowButton(false);
+    setQuestion({
+      show: false,
+      start: -1,
+    });
   };
+  console.log({ trialData });
 
-  return showButton ? (
-    <div className="flex justify-center items-center h-full focus-visible:outline-0">
-      <Button onClick={handleClick}>Próxima frase</Button>
+  return question.show ? (
+    <div className="flex flex-col gap-2 justify-center items-center h-full focus-visible:outline-0">
+      {experiments[experimentIndex].question}
+      <div className="flex gap-1">
+        {experiments[experimentIndex].answers.map(({ answer }) => (
+          <Button onClick={handleClick} key={`answer-${answer}`}>
+            {answer}
+          </Button>
+        ))}
+      </div>
     </div>
   ) : (
     <div
