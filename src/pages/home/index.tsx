@@ -4,6 +4,10 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col gap-2 justify-center items-center max-w-[900px]">
+        <div className="flex justify-center items-center gap-[48px] w-full">
+          <img src="laprol.png" alt="Laprol" className="w-[440px] h-[120px]" />
+          <img src="ufpb.png" alt="Laprol" className="w-[100px]" />
+        </div>
         <p className="indent-8 text-justify">
           Olá, me chamo Laura Roberta, sou estudante do curso de Letras - Língua
           Poruguesa na Universidade Federal da Paraíba (UFPB) e estou no último

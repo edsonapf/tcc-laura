@@ -3,7 +3,6 @@ import { Trial } from "./OnFinish";
 export type TrialRequest = {
   phrasePosition: number;
   phrase: string;
-  questionResponseTime: number;
 } & Trial;
 
 export interface User {
@@ -14,7 +13,14 @@ export interface User {
   portugueseSpeaker: boolean;
 }
 
+export interface QuestionResponse {
+  phrase: string;
+  timeElapsed: number;
+  correct: boolean;
+}
+
 export interface ExperimentData {
   user: User;
   experiment: TrialRequest[];
+  questionsResponses: QuestionResponse[];
 }

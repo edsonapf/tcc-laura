@@ -24,7 +24,7 @@ import {
 
 const formSchema = z.object({
   name: z.string().trim().min(1, "Campo obrigatório"),
-  age: z.number().min(1, "Campo obrigatório"),
+  age: z.number().min(14, "Necessário idade maior que 14 anos."),
   graduating: z.boolean(),
   gender: z.string().min(1, "Campo obrigatório"),
   agreeTerms: z.boolean(),
@@ -40,7 +40,7 @@ export default function FormPage() {
       agreeTerms: false,
       graduating: undefined,
       gender: "",
-      age: undefined,
+      age: 0,
       portugueseSpeaker: undefined,
     },
     mode: "all",
@@ -61,7 +61,6 @@ export default function FormPage() {
     portugueseSpeaker?: boolean;
     agreeTerms: boolean;
   }) => {
-    console.log({ data });
     const user = {
       name: data.name,
       graduating: data.graduating,
@@ -70,7 +69,7 @@ export default function FormPage() {
       portugueseSpeaker: data.portugueseSpeaker,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ user }));
-    navigate("/experiment");
+    navigate("/instructions");
   };
 
   return (
@@ -109,6 +108,7 @@ export default function FormPage() {
                       {...field}
                       onChange={(event) => {
                         if (event.target.value.match(/\D/g)) {
+                          console.log("asd");
                           return;
                         }
 
@@ -116,6 +116,7 @@ export default function FormPage() {
                           target: { value: Number(event.target.value) },
                         });
                       }}
+                      value={field.value || undefined}
                     />
                   </FormControl>
                   <FormMessage />
@@ -242,7 +243,7 @@ export default function FormPage() {
             )}
           />
           <Button className="max-w-[150px]" disabled={!isValid || !agreeTerms}>
-            Iniciar pesquisa
+            Ir para instruções
           </Button>
         </form>
       </Form>

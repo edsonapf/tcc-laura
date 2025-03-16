@@ -17,7 +17,6 @@ export default function Finish() {
         const data = localStorage.getItem(STORAGE_KEY);
         if (data) {
           const body: ExperimentData = JSON.parse(data);
-          console.log({ body });
           await createExperiment(body);
         }
         localStorage.removeItem(STORAGE_KEY);

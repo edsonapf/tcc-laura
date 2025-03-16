@@ -19,5 +19,6 @@ export const createExperiment = async (data: ExperimentData) => {
       phrasePosition: experiment.phrasePosition,
       phrase: experiment.phrase,
     })),
+    questionsResponses: data.questionsResponses,
   });
 };

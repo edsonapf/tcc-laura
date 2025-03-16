@@ -7,9 +7,9 @@ interface Props {
 export default function Layout({ children }: Props) {
   return (
     <>
-      <header className="flex items-center justify-center border-b-[1px] border-b-slate-900 p-4">
+      <header className="flex items-center justify-center border-b-[1px] border-b-[#22506f] p-4">
         <h1 className="font-bold text-2xl text-center">
-          Título do tcc Laura Roberta
+          Pesquisa de TCC do curso de Letras-Língua Portuguesa da UFPB
         </h1>
       </header>
       <div className="items-center justify-items-center h-[calc(100vh-65px)] p-8 gap-16">
