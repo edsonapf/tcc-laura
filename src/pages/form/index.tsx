@@ -225,19 +225,85 @@ export default function FormPage() {
             control={control}
             name="agreeTerms"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow w-fit">
-                <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                </FormControl>
-                <div className="space-y-1 leading-none">
-                  <FormLabel>Concordo em participar do pesquisa</FormLabel>
-                  {/* <FormDescription>
-                    You can manage your mobile notifications in the{" "}
-                    <a href="/examples/forms">mobile settings</a> page.
-                  </FormDescription> */}
+              <FormItem className="flex flex-col items-start space-y-0 rounded-md border p-4 shadow w-fit gap-4">
+                <div className="flex flex-col gap-2">
+                  <div>
+                    <h5 className="font-bold">
+                      TERMO DE CONSENTIMENTO LIVRE E ESCLARECIDO (TCLE)
+                    </h5>
+                    <p className="text-sm">
+                      Título da Pesquisa: Pesquisa de Psicolinguística
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm">
+                      Pesquisadora Responsável: Laura Roberta
+                    </p>
+                    <p className="text-sm">
+                      Contato: E-mail: laura.roberta@academico.ufpb.br |
+                      WhatsApp: (83) 98796-6593
+                    </p>
+                  </div>
+                  <ol className="list-decimal pl-4">
+                    <li>
+                      <h5 className="font-bold">Apresentação</h5>
+                      <small>
+                        Você está sendo convidado(a) a participar da pesquisa
+                        "Pesquisa de Psicolinguística", cujo objetivo é calcular
+                        o tempo de leitura dos voluntários em cada segmento de
+                        um texto. Sua participação é voluntária, e você pode
+                        desistir a qualquer momento, sem qualquer prejuízo.
+                      </small>
+                    </li>
+                    <li>
+                      <h5 className="font-bold">Procedimentos</h5>
+                      <small>
+                        A pesquisa consiste em um experimento de leitura
+                        automonitorada, realizado no seu próprio computador. O
+                        tempo estimado para a atividade é de aproximadamente 30
+                        minutos. Para melhores resultados, recomenda-se que você
+                        esteja em um ambiente silencioso, sem distrações.
+                      </small>
+                    </li>
+                    <li>
+                      <h5 className="font-bold">Riscos e Benefícios</h5>
+                      <small>
+                        Esta pesquisa não apresenta riscos aos participantes.
+                        Embora não haja benefícios diretos, sua colaboração
+                        contribuirá para o avanço dos estudos em
+                        psicolinguística.
+                      </small>
+                    </li>
+                    <li>
+                      <h5 className="font-bold">Confidencialidade</h5>
+                      <small>
+                        Seus dados serão armazenados de forma segura e anônima,
+                        sendo utilizados apenas para fins científicos. Nenhuma
+                        informação pessoal será divulgada ou associada a você.
+                      </small>
+                    </li>
+                    <li>
+                      <h5 className="font-bold">Consentimento</h5>
+                      <small>
+                        Ao clicar no botão abaixo, você confirma que:
+                        <br />
+                        ✔️ Leu e compreendeu as informações deste termo.
+                        <br />
+                        ✔️ Concorda voluntariamente em participar da pesquisa.
+                      </small>
+                    </li>
+                  </ol>
+                </div>
+                <div className="flex gap-2 items-center">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Aceito participar da pesquisa</FormLabel>
+                  </div>
                 </div>
               </FormItem>
             )}
