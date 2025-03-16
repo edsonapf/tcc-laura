@@ -4,9 +4,13 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col gap-2 justify-center items-center max-w-[900px]">
-        <div className="flex justify-center items-center gap-[48px] w-full">
-          <img src="laprol.png" alt="Laprol" className="w-[440px] h-[120px]" />
-          <img src="ufpb.png" alt="Laprol" className="w-[100px]" />
+        <div className="flex flex-col md:flex-row justify-center items-center md:gap-[48px] w-full">
+          <img
+            src="laprol.png"
+            alt="Laprol"
+            className="w-[300px] h-[80px] md:w-[440px] md:h-[120px]"
+          />
+          <img src="ufpb.png" alt="Laprol" className="w-[80px] md:w-[100px]" />
         </div>
         <p className="indent-8 text-justify">
           Olá, me chamo Laura Roberta, sou estudante do curso de Letras - Língua
