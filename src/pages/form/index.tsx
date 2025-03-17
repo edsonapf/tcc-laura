@@ -24,7 +24,7 @@ import {
 
 const formSchema = z.object({
   name: z.string().trim().min(1, "Campo obrigatório"),
-  age: z.number().min(14, "Necessário idade maior que 14 anos."),
+  age: z.number().min(18, "Necessário idade maior que 18 anos."),
   graduating: z.boolean(),
   gender: z.string().min(1, "Campo obrigatório"),
   agreeTerms: z.boolean(),
@@ -73,13 +73,13 @@ export default function FormPage() {
   };
 
   return (
-    <div className="flex flex-col gap-4 w-full">
+    <div className="flex flex-col gap-4 w-full items-center pb-6">
       <h3 className="text-xl font-bold">
         Preencha os dados para poder prosseguir a pesquisa
       </h3>
       <Form {...form}>
         <form
-          className="flex flex-col gap-2 pt-4"
+          className="flex flex-col gap-2 pt-4 max-w-[700px]"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex flex-col gap-2 w-full sm:flex-row">
@@ -96,35 +96,6 @@ export default function FormPage() {
                 </FormItem>
               )}
             />
-            <FormField
-              control={control}
-              name="age"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>Idade</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Idade"
-                      {...field}
-                      onChange={(event) => {
-                        if (event.target.value.match(/\D/g)) {
-                          console.log("asd");
-                          return;
-                        }
-
-                        field.onChange({
-                          target: { value: Number(event.target.value) },
-                        });
-                      }}
-                      value={field.value || undefined}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className="flex flex-col gap-2 w-full sm:flex-row">
             <FormField
               control={control}
               name="gender"
@@ -152,6 +123,35 @@ export default function FormPage() {
                 </FormItem>
               )}
             />
+            <FormField
+              control={control}
+              name="age"
+              render={({ field }) => (
+                <FormItem className="w-full sm:max-w-[150px]">
+                  <FormLabel>Idade</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Idade"
+                      {...field}
+                      onChange={(event) => {
+                        if (event.target.value.match(/\D/g)) {
+                          console.log("asd");
+                          return;
+                        }
+
+                        field.onChange({
+                          target: { value: Number(event.target.value) },
+                        });
+                      }}
+                      value={field.value || undefined}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="flex flex-col gap-2 w-full sm:flex-row">
             <FormField
               control={control}
               name="graduating"
@@ -225,74 +225,48 @@ export default function FormPage() {
             control={control}
             name="agreeTerms"
             render={({ field }) => (
-              <FormItem className="flex flex-col items-start space-y-0 rounded-md border p-4 shadow w-fit gap-4">
+              <FormItem className="flex flex-col items-start space-y-0 rounded-md border p-4 shadow gap-4 max-w-[700px] w-full">
                 <div className="flex flex-col gap-2">
                   <div>
                     <h5 className="font-bold">
-                      TERMO DE CONSENTIMENTO LIVRE E ESCLARECIDO (TCLE)
+                      TERMO DE CONSENTIMENTO LIVRE E ESCLARECIDO
                     </h5>
                     <p className="text-sm">
-                      Título da Pesquisa: Pesquisa de Psicolinguística
+                      Pesquisa de TCC em Psicolinguística
                     </p>
                   </div>
                   <div>
                     <p className="text-sm">
-                      Pesquisadora Responsável: Laura Roberta
+                      Pesquisadores responsáveis: Laura Roberta C. de Oliveira
+                      (Graduanda em Letras - Língua Portuguesa e Prof. Dr. José
+                      Ferrari Neto.)
                     </p>
                     <p className="text-sm">
-                      Contato: E-mail: laura.roberta@academico.ufpb.br |
-                      WhatsApp: (83) 98796-6593
+                      E-mail para contato: laura.roberta@academico.ufpb.br
                     </p>
                   </div>
-                  <ol className="list-decimal pl-4">
-                    <li>
-                      <h5 className="font-bold">Apresentação</h5>
-                      <small>
-                        Você está sendo convidado(a) a participar da pesquisa
-                        "Pesquisa de Psicolinguística", cujo objetivo é calcular
-                        o tempo de leitura dos voluntários em cada segmento de
-                        um texto. Sua participação é voluntária, e você pode
-                        desistir a qualquer momento, sem qualquer prejuízo.
-                      </small>
-                    </li>
-                    <li>
-                      <h5 className="font-bold">Procedimentos</h5>
-                      <small>
-                        A pesquisa consiste em um experimento de leitura
-                        automonitorada, realizado no seu próprio computador. O
-                        tempo estimado para a atividade é de aproximadamente 30
-                        minutos. Para melhores resultados, recomenda-se que você
-                        esteja em um ambiente silencioso, sem distrações.
-                      </small>
-                    </li>
-                    <li>
-                      <h5 className="font-bold">Riscos e Benefícios</h5>
-                      <small>
-                        Esta pesquisa não apresenta riscos aos participantes.
-                        Embora não haja benefícios diretos, sua colaboração
-                        contribuirá para o avanço dos estudos em
-                        psicolinguística.
-                      </small>
-                    </li>
-                    <li>
-                      <h5 className="font-bold">Confidencialidade</h5>
-                      <small>
-                        Seus dados serão armazenados de forma segura e anônima,
-                        sendo utilizados apenas para fins científicos. Nenhuma
-                        informação pessoal será divulgada ou associada a você.
-                      </small>
-                    </li>
-                    <li>
-                      <h5 className="font-bold">Consentimento</h5>
-                      <small>
-                        Ao clicar no botão abaixo, você confirma que:
-                        <br />
-                        ✔️ Leu e compreendeu as informações deste termo.
-                        <br />
-                        ✔️ Concorda voluntariamente em participar da pesquisa.
-                      </small>
-                    </li>
-                  </ol>
+                  <small>
+                    Você irá participar de um experimento piloto de leitura
+                    automonitorada, que é um método utilizado em experimentos na
+                    área de Psicolinguística.
+                  </small>
+                  <small>
+                    Sua participação é voluntária e você pode desistir a
+                    qualquer momento, entretanto, caso a participação não seja
+                    finalizada, os dados não serão salvos. Durante a
+                    participação no experimento, é necessário que o voluntário
+                    leia os segmentos com atenção, para isso, indicamos que o
+                    experimento seja realizado em um lugar silencioso. O
+                    experimento deve ser realizado em um computador e tem
+                    duração de aproximadamente 30 minutos.
+                  </small>
+                  <small>
+                    O experimento não traz nenhum tipo de risco ao voluntário e
+                    nem nenhum tipo de benefício financeiro. Os dados expostos
+                    pelo voluntário nesta pesquisa são confidenciais e serão
+                    utilizados de forma anônima. Se o voluntário leu e concordar
+                    em participar do experimento, clique na opção abaixo:
+                  </small>
                 </div>
                 <div className="flex gap-2 items-center">
                   <FormControl>
@@ -302,13 +276,16 @@ export default function FormPage() {
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>Aceito participar da pesquisa</FormLabel>
+                    <FormLabel>Li e aceito participar da pesquisa</FormLabel>
                   </div>
                 </div>
               </FormItem>
             )}
           />
-          <Button className="max-w-[150px]" disabled={!isValid || !agreeTerms}>
+          <Button
+            className="max-w-[200px] self-center"
+            disabled={!isValid || !agreeTerms}
+          >
             Ir para instruções
           </Button>
         </form>
