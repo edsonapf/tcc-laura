@@ -8,7 +8,7 @@ import Test from "./pages/test";
 import LogRocket from "logrocket";
 import setupLogRocketReact from "logrocket-react";
 
-if (import.meta.env.DEV) {
+if (!import.meta.env.DEV) {
   setupLogRocketReact(LogRocket);
   LogRocket.init("fsxvd1/tcc-laura");
 }
