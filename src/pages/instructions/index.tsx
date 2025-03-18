@@ -16,10 +16,10 @@ export default function Instructions() {
       </small>
       <div className="flex flex-col max-w-[700px] w-full gap-2 py-2">
         <p className="text-justify">
-          Irá aparecer uma frase dividia em pequenas partes, uma de cada vez,
-          essas partes são chamadas de segmentos, para passar para o próximo
-          segmento, é necessário apertar na tecla <strong>ESPAÇO</strong> do
-          computador.
+          Uma frase dividida em pequenas partes irá aparecer na tela, uma parte
+          de cada vez. Essas partes são chamadas de segmentos. Leia cada
+          segmento e, para passar para o segmento seguinte, basta apertar a
+          tecla <strong>ESPAÇO</strong> do computador.
         </p>
         <strong>Exemplo:</strong>
         <p>A frase é "Eu moro no Brasil"</p>

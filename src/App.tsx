@@ -7,6 +7,7 @@ import Instructions from "./pages/instructions";
 import Test from "./pages/test";
 import LogRocket from "logrocket";
 import setupLogRocketReact from "logrocket-react";
+import Layout from "./components/layout";
 
 if (!import.meta.env.DEV) {
   setupLogRocketReact(LogRocket);
@@ -16,14 +17,16 @@ if (!import.meta.env.DEV) {
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/form" element={<Form />} />
-        <Route path="/instructions" element={<Instructions />} />
-        <Route path="/test" element={<Test />} />
-        <Route path="/experiment" element={<Experiment />} />
-        <Route path="/finish" element={<Finish />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/form" element={<Form />} />
+          <Route path="/instructions" element={<Instructions />} />
+          <Route path="/test" element={<Test />} />
+          <Route path="/experiment" element={<Experiment />} />
+          <Route path="/finish" element={<Finish />} />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 }
