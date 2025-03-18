@@ -5,7 +5,13 @@ import Form from "./pages/form";
 import Finish from "./pages/finish";
 import Instructions from "./pages/instructions";
 import Test from "./pages/test";
-import Wait from "./pages/wait";
+import LogRocket from "logrocket";
+import setupLogRocketReact from "logrocket-react";
+
+if (import.meta.env.DEV) {
+  setupLogRocketReact(LogRocket);
+  LogRocket.init("fsxvd1/tcc-laura");
+}
 
 function App() {
   return (
@@ -14,17 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/form" element={<Form />} />
         <Route path="/instructions" element={<Instructions />} />
-        <Route
-          path="wait-test"
-          element={<Wait nextPage="/test" text="A rodada teste iniciará em" />}
-        />
         <Route path="/test" element={<Test />} />
-        <Route
-          path="wait-experiment"
-          element={
-            <Wait nextPage="/experiment" text="A pesquisa iniciará em" />
-          }
-        />
         <Route path="/experiment" element={<Experiment />} />
         <Route path="/finish" element={<Finish />} />
       </Routes>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { Button } from "../ui/button";
 import { capitalize } from "@/lib/utils";
 
@@ -9,6 +9,7 @@ interface Props {
   }[];
   finishText: string;
   last: boolean;
+  message?: ReactNode;
   question: string;
   onNextQuestion: (correct: boolean) => void;
 }
@@ -17,6 +18,7 @@ export default function Question({
   answers,
   finishText,
   last,
+  message,
   question,
   onNextQuestion,
 }: Props) {
@@ -31,12 +33,15 @@ export default function Question({
   return (
     <div className="flex flex-col gap-2 justify-center items-center h-full focus-visible:outline-0">
       {hasAnswered ? (
-        <Button
-          onClick={() => onNextQuestion(correctAnswer)}
-          className="text-md"
-        >
-          {last ? finishText : "Ir para próxima frase"}
-        </Button>
+        <>
+          {last && Boolean(message) && message}
+          <Button
+            onClick={() => onNextQuestion(correctAnswer)}
+            className="text-md"
+          >
+            {last ? finishText : "Ir para próxima frase"}
+          </Button>
+        </>
       ) : (
         <>
           <p className="font-bold text-xl">{question}</p>

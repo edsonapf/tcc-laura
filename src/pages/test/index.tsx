@@ -44,7 +44,7 @@ export default function Test() {
 
   const handleClick = () => {
     if (experimentIndex + 1 === experiments.length) {
-      navigate("/wait-experiment");
+      navigate("/experiment");
       return;
     }
 
@@ -55,8 +55,14 @@ export default function Test() {
   return showQuestion ? (
     <Question
       answers={experiments[experimentIndex].answers}
-      finishText="Finalizar rodada teste"
+      finishText="Iniciar pesquisa"
       last={experimentIndex === experiments.length - 1}
+      message={
+        <div className="flex flex-col gap-1 items-center">
+          <p>A rodada teste foi finalizada.</p>
+          <p>Clique no botão abaixo para iniciar a pesquisa.</p>
+        </div>
+      }
       question={experiments[experimentIndex].question}
       onNextQuestion={handleClick}
     />
