@@ -14,7 +14,7 @@ export default function Home() {
         </div>
         <p className="indent-8 text-justify">
           Olá, me chamo Laura Roberta, sou estudante do curso de Letras - Língua
-          Poruguesa na Universidade Federal da Paraíba (UFPB) e estou no último
+          Portuguesa na Universidade Federal da Paraíba (UFPB) e estou no último
           período. Venho aqui, em colaboração com o Laboratório de Processamento
           Linguístico (LAPROL) e sob orientação do Professor Dr. José Ferrari
           Neto, solicitar voluntários para participar de uma pesquisa em
